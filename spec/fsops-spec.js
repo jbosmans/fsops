@@ -176,6 +176,9 @@ describe("fsops", function(){
 
         var o = fsops.showChangesToApply(source, target, [".git", ".idea"]);
         fsops.logDiffSummary(o);
+        console.log(o.unreadablePaths.map(function(c){
+            return "UNREADABLE "+c.path;
+        }))
         //var summary = fsops.createSummaryOfChanges(o);
         //summary.forEach(function(sp){
         //    console.log(sp.status + (sp.path.dir ? "d " : "f ") + sp.path.relativePath);
