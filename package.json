@@ -1,12 +1,12 @@
 {
   "name": "fsops",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "fsops operates on files and directories in a serial synchronuous way. Includes mkdirs, recursive delete, copy changed, reapply changes",
   "repository": {
     "type": "git",
     "url": "git://github.com/jbosmans/fsops.git"
   },
-  "main": "index.js",
+  "main": "./lib/fsops.js",
   "scripts": {
     "test": "node node_modules/jasmine/bin/jasmine.js"
   },
