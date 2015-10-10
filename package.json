@@ -2,6 +2,10 @@
   "name": "fsops",
   "version": "0.1.0",
   "description": "Operations on directories in a serial synchronuous way",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jbosmans/fsops.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "node node_modules/jasmine/bin/jasmine.js"
@@ -9,7 +13,10 @@
   "bin":{
     "fsops" : "./lib/cli.js"
   },
-  "author": "jbosmans@gmail.com",
+  "author": {
+    "name": "Jonathan Bosmans",
+    "email": "jbosmans@gmail.com"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "isbinaryfile": "^3.0.0"
