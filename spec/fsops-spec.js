@@ -6,24 +6,24 @@ var listDir = path.resolve(filesDir, "listDir");
 
 describe("fsops", function(){
     it("can list recursively", function(){
-        var children = fsops.listDirChildrenFullPathsRecursivelyFull(listDir);
+        var children = fsops.listRecursivelyMeta(listDir);
         expect(children.length).toBe(3);
         expect(path.basename(children[0].path)).toBe("file1.txt");
         function nonExistingSourceDir(){
-            fsops.listDirChildrenFullPathsRecursivelyFull("/xyz_nonExisting")
+            fsops.listRecursivelyMeta("/xyz_nonExisting")
         }
         expect(nonExistingSourceDir).toThrow();
     });
     it("can ignore relative, absolute and wildcard names", function(){
-        var children = fsops.listDirChildrenFullPathsRecursivelyFull(listDir);
+        var children = fsops.listRecursivelyMeta(listDir);
         expect(children.length).toBe(3);
-        children = fsops.listDirChildrenFullPathsRecursivelyFull(listDir, "nested");
+        children = fsops.listRecursivelyMeta(listDir, "nested");
         expect(children.length).toBe(1);
-        children = fsops.listDirChildrenFullPathsRecursivelyFull(listDir, "nested/file2.txt");
+        children = fsops.listRecursivelyMeta(listDir, "nested/file2.txt");
         expect(children.length).toBe(2);
-        children = fsops.listDirChildrenFullPathsRecursivelyFull(listDir, ["nested/file2.txt"]);
+        children = fsops.listRecursivelyMeta(listDir, ["nested/file2.txt"]);
         expect(children.length).toBe(2);
-        children = fsops.listDirChildrenFullPathsRecursivelyFull(listDir, "*.txt");
+        children = fsops.listRecursivelyMeta(listDir, "*.txt");
         expect(children.length).toBe(1);
     });
 
@@ -51,7 +51,7 @@ describe("fsops", function(){
         var copyDirPath = path.resolve(filesDir, "listDirCopy");
         fsops.copyUpdated(listDir, copyDirPath);
         expect(fs.statSync(copyDirPath).isDirectory()).toBe(true);
-        expect(fsops.listDirChildrenFullPathsRecursivelyFull(copyDirPath).length).toBe(3);
+        expect(fsops.listRecursivelyMeta(copyDirPath).length).toBe(3);
         fsops.deleteRecursively(copyDirPath);
         expect(fs.existsSync(copyDirPath)).toBe(false);
     });
@@ -134,5 +134,11 @@ describe("fsops", function(){
         var target = '/mnt/gentoo64/home/spectre/Projects/DSV/angularTheme';
         var o = fsops.showChangesToReapply(source, target, [".git", ".idea"]);
         fsops.logDiffSummary(o);
-    })
+    });
+    fit("can list root", function(){
+        //var results = fsops.listRecursively('/', 'mnt');
+        var results = fsops.listRecursively('/home/spectre/Projects/bws-runtimes/');
+        //console.log(results);
+        //fs.writeFileSync('/tmp/allPathsOnFs.txt', results, 'utf8');
+    });
 });

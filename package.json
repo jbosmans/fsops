@@ -1,7 +1,7 @@
 {
   "name": "fsops",
   "version": "0.1.0",
-  "description": "Operations on directories in a serial synchronuous way",
+  "description": "fsops operates on files and directories in a serial synchronuous way. Includes mkdirs, recursive delete, copy changed, reapply changes",
   "repository": {
     "type": "git",
     "url": "git://github.com/jbosmans/fsops.git"
